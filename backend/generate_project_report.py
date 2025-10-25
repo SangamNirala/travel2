@@ -349,7 +349,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 2.3
         self.story.append(Paragraph("2.3 Graph Algorithms for Route Finding", self.styles['SectionHeading']))
@@ -372,7 +372,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_3_architecture(self):
         """Chapter 3: System Architecture"""
@@ -436,7 +436,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 3.3
         self.story.append(Paragraph("3.3 Frontend Design", self.styles['SectionHeading']))
@@ -488,7 +488,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_4_eda(self):
         """Chapter 4: Data Preprocessing and EDA"""
@@ -521,7 +521,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 4.2
         self.story.append(Paragraph("4.2 Data Cleaning Process", self.styles['SectionHeading']))
@@ -552,7 +552,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 4.3
         self.story.append(Paragraph("4.3 Feature Engineering", self.styles['SectionHeading']))
@@ -584,7 +584,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 4.4
         self.story.append(Paragraph("4.4 Exploratory Data Analysis", self.styles['SectionHeading']))
@@ -630,7 +630,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(note, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # Image placeholders
         self.story.append(Paragraph("4.4.1 EDA Visualizations", self.styles['SubsectionHeading']))
@@ -660,7 +660,7 @@ class ProjectReportGenerator:
                 self.story.append(Paragraph(f"[{caption} - Image Placeholder]", self.styles['CenterText']))
                 self.story.append(Spacer(1, 0.3*inch))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # More visualizations
         more_images = [
@@ -686,7 +686,7 @@ class ProjectReportGenerator:
                 self.story.append(Paragraph(f"[{caption} - Image Placeholder]", self.styles['CenterText']))
                 self.story.append(Spacer(1, 0.3*inch))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 4.5
         self.story.append(Paragraph("4.5 Key Insights from EDA", self.styles['SectionHeading']))
@@ -718,7 +718,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_5_neural_network(self):
         """Chapter 5: Neural Network Model"""
@@ -755,7 +755,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 5.2
         self.story.append(Paragraph("5.2 Training Process", self.styles['SectionHeading']))
@@ -789,7 +789,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 5.3
         self.story.append(Paragraph("5.3 Model Evaluation", self.styles['SectionHeading']))
@@ -816,7 +816,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_6_route_optimization(self):
         """Chapter 6: Route Optimization"""
@@ -881,7 +881,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 6.3
         self.story.append(Paragraph("6.3 Integration with Neural Network", self.styles['SectionHeading']))
@@ -917,7 +917,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_7_implementation(self):
         """Chapter 7: Implementation Details"""
@@ -967,7 +967,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 7.2
         self.story.append(Paragraph("7.2 Frontend Implementation", self.styles['SectionHeading']))
@@ -1005,7 +1005,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 7.3
         self.story.append(Paragraph("7.3 API Design", self.styles['SectionHeading']))
@@ -1046,7 +1046,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_8_results(self):
         """Chapter 8: Results and Analysis"""
@@ -1105,7 +1105,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # 8.3
         self.story.append(Paragraph("8.3 System Performance", self.styles['SectionHeading']))
@@ -1139,7 +1139,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_9_future_enhancements(self):
         """Chapter 9: Future Enhancements"""
@@ -1203,7 +1203,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_chapter_10_conclusion(self):
         """Chapter 10: Conclusion"""
@@ -1263,7 +1263,7 @@ class ProjectReportGenerator:
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
     
     def add_references(self):
         """Add references section"""
@@ -1292,7 +1292,7 @@ class ProjectReportGenerator:
             self.story.append(Paragraph(ref, self.styles['BodyJustified']))
             self.story.append(Spacer(1, 0.1*inch))
         
-        self.story.append(PageBreak())
+        # Continuous flow - page break removed
         
         # Add acknowledgments
         self.story.append(Paragraph("ACKNOWLEDGMENTS", self.styles['ChapterTitle']))
