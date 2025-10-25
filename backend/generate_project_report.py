@@ -34,9 +34,10 @@ class ProjectReportGenerator:
         self.styles.add(ParagraphStyle(
             name='CustomTitle',
             parent=self.styles['Heading1'],
-            fontSize=24,
+            fontSize=22,
             textColor=colors.HexColor('#1a237e'),
-            spaceAfter=30,
+            spaceAfter=20,
+            spaceBefore=10,
             alignment=TA_CENTER,
             fontName='Helvetica-Bold'
         ))
@@ -45,10 +46,10 @@ class ProjectReportGenerator:
         self.styles.add(ParagraphStyle(
             name='ChapterTitle',
             parent=self.styles['Heading1'],
-            fontSize=18,
+            fontSize=16,
             textColor=colors.HexColor('#283593'),
-            spaceAfter=12,
-            spaceBefore=12,
+            spaceAfter=8,
+            spaceBefore=8,
             fontName='Helvetica-Bold'
         ))
         
@@ -56,10 +57,10 @@ class ProjectReportGenerator:
         self.styles.add(ParagraphStyle(
             name='SectionHeading',
             parent=self.styles['Heading2'],
-            fontSize=14,
+            fontSize=13,
             textColor=colors.HexColor('#3f51b5'),
-            spaceAfter=10,
-            spaceBefore=10,
+            spaceAfter=6,
+            spaceBefore=8,
             fontName='Helvetica-Bold'
         ))
         
@@ -67,10 +68,10 @@ class ProjectReportGenerator:
         self.styles.add(ParagraphStyle(
             name='SubsectionHeading',
             parent=self.styles['Heading3'],
-            fontSize=12,
+            fontSize=11,
             textColor=colors.HexColor('#5c6bc0'),
-            spaceAfter=8,
-            spaceBefore=8,
+            spaceAfter=5,
+            spaceBefore=6,
             fontName='Helvetica-Bold'
         ))
         
@@ -78,19 +79,19 @@ class ProjectReportGenerator:
         self.styles.add(ParagraphStyle(
             name='BodyJustified',
             parent=self.styles['BodyText'],
-            fontSize=11,
+            fontSize=10,
             alignment=TA_JUSTIFY,
-            spaceAfter=12,
-            leading=14
+            spaceAfter=8,
+            leading=12
         ))
         
         # Center text
         self.styles.add(ParagraphStyle(
             name='CenterText',
             parent=self.styles['BodyText'],
-            fontSize=11,
+            fontSize=10,
             alignment=TA_CENTER,
-            spaceAfter=8
+            spaceAfter=6
         ))
         
     def add_title_page(self):
