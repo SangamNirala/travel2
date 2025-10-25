@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -6,10 +6,10 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
-
+from route_optimizer import RouteOptimizer
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -25,46 +25,108 @@ app = FastAPI()
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Initialize RouteOptimizer
+try:
+    route_optimizer = RouteOptimizer(
+        graph_path=str(ROOT_DIR / 'station_graph.pkl'),
+        model_path=str(ROOT_DIR / 'railway_model.keras'),
+        scaler_path=str(ROOT_DIR / 'scaler.pkl'),
+        mappings_path=str(ROOT_DIR / 'station_mappings.pkl')
+    )
+    print("✅ Route optimizer initialized successfully")
+except Exception as e:
+    print(f"⚠️ Warning: Could not initialize route optimizer: {e}")
+    print("Please run data preprocessing and model training first.")
+    route_optimizer = None
 
 # Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+class Station(BaseModel):
+    code: str
+    name: str
+
+class RouteSegment(BaseModel):
+    from_station: str = Field(alias='from')
+    from_name: str
+    to: str
+    to_name: str
+    distance: float
+    time: float
     
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    model_config = ConfigDict(populate_by_name=True)
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+class RouteResponse(BaseModel):
+    path: List[Station]
+    route_details: List[RouteSegment]
+    total_distance: float
+    total_time: float
+    total_time_hours: float
 
-# Add your routes to the router instead of directly to app
+class RouteRequest(BaseModel):
+    source: str
+    destination: str
+
+# API Routes
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Railway Path Optimization System API", "status": "active"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
+@api_router.get("/stations", response_model=List[Station])
+async def get_stations():
+    """
+    Get all available railway stations
+    """
+    if route_optimizer is None:
+        raise HTTPException(status_code=503, detail="Route optimizer not initialized. Please run preprocessing and training first.")
     
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
+    try:
+        stations = route_optimizer.get_all_stations()
+        return stations
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+@api_router.post("/route", response_model=RouteResponse)
+async def find_route(request: RouteRequest):
+    """
+    Find optimal route between two stations
+    """
+    if route_optimizer is None:
+        raise HTTPException(status_code=503, detail="Route optimizer not initialized. Please run preprocessing and training first.")
     
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
+    try:
+        result = route_optimizer.find_optimal_route(request.source, request.destination)
+        
+        if result is None:
+            raise HTTPException(
+                status_code=404, 
+                detail=f"No route found between {request.source} and {request.destination}"
+            )
+        
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/station/{station_code}/connections")
+async def get_connections(station_code: str):
+    """
+    Get all direct connections from a station
+    """
+    if route_optimizer is None:
+        raise HTTPException(status_code=503, detail="Route optimizer not initialized")
     
-    return status_checks
+    try:
+        connections = route_optimizer.get_station_connections(station_code)
+        return {"station_code": station_code, "connections": connections}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/health")
+async def health_check():
+    return {
+        "status": "healthy",
+        "optimizer_ready": route_optimizer is not None
+    }
 
 # Include the router in the main app
 app.include_router(api_router)
