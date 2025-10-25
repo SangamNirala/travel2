@@ -80,6 +80,20 @@ function App() {
     return station ? station.name : code;
   };
 
+  // Filter stations based on search
+  const getFilteredStations = (searchTerm, maxResults = 100) => {
+    if (!searchTerm) {
+      return stations.slice(0, maxResults);
+    }
+    const search = searchTerm.toLowerCase();
+    return stations
+      .filter(s => 
+        s.name.toLowerCase().includes(search) || 
+        s.code.toLowerCase().includes(search)
+      )
+      .slice(0, maxResults);
+  };
+
   return (
     <div className="app-container">
       <div className="hero-section">
