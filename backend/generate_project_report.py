@@ -19,10 +19,10 @@ class ProjectReportGenerator:
         self.doc = SimpleDocTemplate(
             output_filename,
             pagesize=A4,
-            rightMargin=72,
-            leftMargin=72,
-            topMargin=72,
-            bottomMargin=50
+            rightMargin=60,
+            leftMargin=60,
+            topMargin=60,
+            bottomMargin=40
         )
         self.story = []
         self.styles = getSampleStyleSheet()
