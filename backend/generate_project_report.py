@@ -159,7 +159,7 @@ class ProjectReportGenerator:
     def add_table_of_contents(self):
         """Add table of contents"""
         self.story.append(Paragraph("TABLE OF CONTENTS", self.styles['ChapterTitle']))
-        self.story.append(Spacer(1, 0.3*inch))
+        self.story.append(Spacer(1, 0.2*inch))
         
         contents = [
             ("Chapter 1", "Introduction", "3"),
@@ -171,48 +171,48 @@ class ProjectReportGenerator:
             ("", "2.1 Railway Route Optimization", "5"),
             ("", "2.2 Neural Networks in Transportation", "5"),
             ("", "2.3 Graph Algorithms", "6"),
-            ("Chapter 3", "System Architecture", "7"),
-            ("", "3.1 Overall Architecture", "7"),
+            ("Chapter 3", "System Architecture", "6"),
+            ("", "3.1 Overall Architecture", "6"),
             ("", "3.2 Backend Design", "7"),
-            ("", "3.3 Frontend Design", "8"),
+            ("", "3.3 Frontend Design", "7"),
             ("", "3.4 Data Flow", "8"),
-            ("Chapter 4", "Data Preprocessing and EDA", "9"),
-            ("", "4.1 Dataset Description", "9"),
-            ("", "4.2 Data Cleaning", "10"),
-            ("", "4.3 Feature Engineering", "10"),
-            ("", "4.4 Exploratory Data Analysis", "11"),
-            ("", "4.5 Key Insights", "12"),
-            ("Chapter 5", "Neural Network Model", "15"),
-            ("", "5.1 Model Architecture", "15"),
-            ("", "5.2 Training Process", "15"),
-            ("", "5.3 Model Evaluation", "16"),
-            ("Chapter 6", "Route Optimization Algorithm", "17"),
-            ("", "6.1 Graph Construction", "17"),
-            ("", "6.2 Dijkstra's Algorithm Implementation", "17"),
-            ("", "6.3 Integration with Neural Network", "18"),
-            ("Chapter 7", "Implementation Details", "19"),
-            ("", "7.1 Backend Implementation", "19"),
-            ("", "7.2 Frontend Implementation", "20"),
-            ("", "7.3 API Design", "21"),
-            ("Chapter 8", "Results and Analysis", "22"),
-            ("", "8.1 Model Performance", "22"),
-            ("", "8.2 Route Optimization Results", "22"),
-            ("", "8.3 System Performance", "23"),
-            ("Chapter 9", "Future Enhancements", "24"),
-            ("Chapter 10", "Conclusion", "25"),
-            ("", "References", "26"),
+            ("Chapter 4", "Data Preprocessing and EDA", "8"),
+            ("", "4.1 Dataset Description", "8"),
+            ("", "4.2 Data Cleaning", "9"),
+            ("", "4.3 Feature Engineering", "9"),
+            ("", "4.4 Exploratory Data Analysis", "10"),
+            ("", "4.5 Key Insights", "13"),
+            ("Chapter 5", "Neural Network Model", "14"),
+            ("", "5.1 Model Architecture", "14"),
+            ("", "5.2 Training Process", "14"),
+            ("", "5.3 Model Evaluation", "15"),
+            ("Chapter 6", "Route Optimization Algorithm", "15"),
+            ("", "6.1 Graph Construction", "15"),
+            ("", "6.2 Dijkstra's Algorithm", "16"),
+            ("", "6.3 Integration with Neural Network", "16"),
+            ("Chapter 7", "Implementation Details", "17"),
+            ("", "7.1 Backend Implementation", "17"),
+            ("", "7.2 Frontend Implementation", "18"),
+            ("", "7.3 API Design", "18"),
+            ("Chapter 8", "Results and Analysis", "19"),
+            ("", "8.1 Model Performance", "19"),
+            ("", "8.2 Route Optimization Results", "19"),
+            ("", "8.3 System Performance", "20"),
+            ("Chapter 9", "Future Enhancements", "20"),
+            ("Chapter 10", "Conclusion", "21"),
+            ("", "References", "22"),
         ]
         
         toc_data = [[c[0], c[1], c[2]] for c in contents]
-        toc_table = Table(toc_data, colWidths=[1*inch, 4*inch, 0.7*inch])
+        toc_table = Table(toc_data, colWidths=[1*inch, 3.8*inch, 0.7*inch])
         toc_table.setStyle(TableStyle([
             ('ALIGN', (0, 0), (0, -1), 'LEFT'),
             ('ALIGN', (1, 0), (1, -1), 'LEFT'),
             ('ALIGN', (2, 0), (2, -1), 'RIGHT'),
             ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
-            ('TOPPADDING', (0, 0), (-1, -1), 6),
+            ('FONTSIZE', (0, 0), (-1, -1), 9),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ('TOPPADDING', (0, 0), (-1, -1), 4),
         ]))
         self.story.append(toc_table)
         self.story.append(PageBreak())
