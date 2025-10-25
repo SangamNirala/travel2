@@ -221,7 +221,7 @@ class ProjectReportGenerator:
         """Chapter 1: Introduction"""
         self.story.append(Paragraph("CHAPTER 1", self.styles['ChapterTitle']))
         self.story.append(Paragraph("INTRODUCTION", self.styles['ChapterTitle']))
-        self.story.append(Spacer(1, 0.2*inch))
+        self.story.append(Spacer(1, 0.15*inch))
         
         # 1.1 Project Overview
         self.story.append(Paragraph("1.1 Project Overview", self.styles['SectionHeading']))
@@ -233,7 +233,6 @@ class ProjectReportGenerator:
         and 8,147 stations to deliver intelligent route recommendations.
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
-        self.story.append(Spacer(1, 0.15*inch))
         
         # 1.2 Problem Statement
         self.story.append(Paragraph("1.2 Problem Statement", self.styles['SectionHeading']))
@@ -253,7 +252,6 @@ class ProjectReportGenerator:
         real-time optimization capabilities.
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
-        self.story.append(Spacer(1, 0.15*inch))
         
         # 1.3 Proposed Solution
         self.story.append(Paragraph("1.3 Proposed Solution", self.styles['SectionHeading']))
@@ -276,8 +274,6 @@ class ProjectReportGenerator:
         selection, real-time route calculation, and detailed journey visualization.
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
-        
-        self.story.append(PageBreak())
         
         # 1.4 Objectives
         self.story.append(Paragraph("1.4 Project Objectives", self.styles['SectionHeading']))
