@@ -137,12 +137,12 @@ A full-stack AI-powered railway route optimization system that uses **Neural Net
 
 ### 1. Get All Stations
 ```bash
-curl https://trainpath-ai.preview.emergentagent.com/api/stations
+curl https://train-data-insights.preview.emergentagent.com/api/stations
 ```
 
 ### 2. Find Optimal Route
 ```bash
-curl -X POST https://trainpath-ai.preview.emergentagent.com/api/route \
+curl -X POST https://train-data-insights.preview.emergentagent.com/api/route \
   -H "Content-Type: application/json" \
   -d '{
     "source": "NDLS",
@@ -200,11 +200,11 @@ curl -X POST https://trainpath-ai.preview.emergentagent.com/api/route \
 ### Backend API Tests (Verified ✓)
 ```bash
 # Health Check
-curl https://trainpath-ai.preview.emergentagent.com/api/health
+curl https://train-data-insights.preview.emergentagent.com/api/health
 # Response: {"status": "healthy", "optimizer_ready": true}
 
 # Station Count
-curl https://trainpath-ai.preview.emergentagent.com/api/stations | jq 'length'
+curl https://train-data-insights.preview.emergentagent.com/api/stations | jq 'length'
 # Response: 8151
 
 # Route Test (MAO → THVM)
@@ -228,7 +228,7 @@ curl -X POST .../api/route -d '{"source":"NDLS","destination":"CSMT"}'
 
 ## 🚀 Deployment
 
-**URL:** https://trainpath-ai.preview.emergentagent.com
+**URL:** https://train-data-insights.preview.emergentagent.com
 
 **Status:** Live and fully operational
 
