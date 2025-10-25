@@ -302,8 +302,6 @@ class ProjectReportGenerator:
         scalability through comprehensive testing.
         """
         self.story.append(Paragraph(text, self.styles['BodyJustified']))
-        
-        self.story.append(PageBreak())
     
     def add_chapter_2_background(self):
         """Chapter 2: Background"""
