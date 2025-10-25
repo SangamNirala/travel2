@@ -119,23 +119,45 @@ function App() {
                   <MapPin size={18} />
                   Source Station
                 </label>
-                <Select 
-                  value={sourceStation} 
-                  onValueChange={setSourceStation}
-                  disabled={loadingStations}
-                  data-testid="source-station-select"
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder={loadingStations ? "Loading..." : "Select source station"} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {stations.map((station) => (
-                      <SelectItem key={station.code} value={station.code}>
-                        {station.name} ({station.code})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                {loadingStations ? (
+                  <div className="loading-state">Loading stations...</div>
+                ) : (
+                  <Select 
+                    value={sourceStation} 
+                    onValueChange={setSourceStation}
+                    data-testid="source-station-select"
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Type to search station..." />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-[300px] overflow-y-auto">
+                      <div className="p-2 sticky top-0 bg-white">
+                        <input
+                          type="text"
+                          placeholder="Search by name or code..."
+                          className="w-full px-3 py-2 border rounded-md"
+                          value={sourceSearch}
+                          onChange={(e) => setSourceSearch(e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                      {getFilteredStations(sourceSearch, 50).length === 0 ? (
+                        <div className="p-3 text-sm text-gray-500">No stations found</div>
+                      ) : (
+                        getFilteredStations(sourceSearch, 50).map((station) => (
+                          <SelectItem key={station.code} value={station.code}>
+                            {station.name} ({station.code})
+                          </SelectItem>
+                        ))
+                      )}
+                      {sourceSearch === '' && (
+                        <div className="p-2 text-xs text-gray-400 text-center">
+                          Showing first 50 of {stations.length} stations. Type to search.
+                        </div>
+                      )}
+                    </SelectContent>
+                  </Select>
+                )}
               </div>
 
               <div className="station-input">
@@ -143,23 +165,45 @@ function App() {
                   <MapPin size={18} />
                   Destination Station
                 </label>
-                <Select 
-                  value={destinationStation} 
-                  onValueChange={setDestinationStation}
-                  disabled={loadingStations}
-                  data-testid="destination-station-select"
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder={loadingStations ? "Loading..." : "Select destination station"} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {stations.map((station) => (
-                      <SelectItem key={station.code} value={station.code}>
-                        {station.name} ({station.code})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                {loadingStations ? (
+                  <div className="loading-state">Loading stations...</div>
+                ) : (
+                  <Select 
+                    value={destinationStation} 
+                    onValueChange={setDestinationStation}
+                    data-testid="destination-station-select"
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Type to search station..." />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-[300px] overflow-y-auto">
+                      <div className="p-2 sticky top-0 bg-white">
+                        <input
+                          type="text"
+                          placeholder="Search by name or code..."
+                          className="w-full px-3 py-2 border rounded-md"
+                          value={destSearch}
+                          onChange={(e) => setDestSearch(e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                      {getFilteredStations(destSearch, 50).length === 0 ? (
+                        <div className="p-3 text-sm text-gray-500">No stations found</div>
+                      ) : (
+                        getFilteredStations(destSearch, 50).map((station) => (
+                          <SelectItem key={station.code} value={station.code}>
+                            {station.name} ({station.code})
+                          </SelectItem>
+                        ))
+                      )}
+                      {destSearch === '' && (
+                        <div className="p-2 text-xs text-gray-400 text-center">
+                          Showing first 50 of {stations.length} stations. Type to search.
+                        </div>
+                      )}
+                    </SelectContent>
+                  </Select>
+                )}
               </div>
             </div>
 
