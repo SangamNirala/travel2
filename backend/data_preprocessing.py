@@ -18,8 +18,11 @@ def preprocess_data(csv_path):
     """
     Load and preprocess the railway dataset
     """
-    # Load dataset
-    df = pd.read_csv(csv_path)
+    # Load dataset with proper dtypes
+    df = pd.read_csv(csv_path, low_memory=False)
+    
+    # Convert Distance to numeric
+    df['Distance'] = pd.to_numeric(df['Distance'], errors='coerce')
     
     # Parse time columns
     df['Arrival_Time_Delta'] = df['Arrival time'].apply(parse_time)
