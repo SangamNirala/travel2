@@ -28,10 +28,10 @@ api_router = APIRouter(prefix="/api")
 # Initialize RouteOptimizer
 try:
     route_optimizer = RouteOptimizer(
-        graph_path=str(ROOT_DIR / 'station_graph.pkl'),
-        model_path=str(ROOT_DIR / 'railway_model.keras'),
-        scaler_path=str(ROOT_DIR / 'scaler.pkl'),
-        mappings_path=str(ROOT_DIR / 'station_mappings.pkl')
+        graph_path='/app/backend/station_graph.pkl',
+        model_path='/app/backend/railway_model.keras',
+        scaler_path='/app/backend/scaler.pkl',
+        mappings_path='/app/backend/station_mappings.pkl'
     )
     print("✅ Route optimizer initialized successfully")
 except Exception as e:
