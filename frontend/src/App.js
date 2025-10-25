@@ -16,6 +16,8 @@ function App() {
   const [route, setRoute] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadingStations, setLoadingStations] = useState(true);
+  const [sourceSearch, setSourceSearch] = useState('');
+  const [destSearch, setDestSearch] = useState('');
 
   useEffect(() => {
     fetchStations();
