@@ -97,12 +97,12 @@ class ProjectReportGenerator:
     def add_title_page(self):
         """Create the title page"""
         # Add some space from top
-        self.story.append(Spacer(1, 1.5*inch))
+        self.story.append(Spacer(1, 1*inch))
         
         # Main title
         title = Paragraph("RAILWAY PATH OPTIMIZATION SYSTEM", self.styles['CustomTitle'])
         self.story.append(title)
-        self.story.append(Spacer(1, 0.3*inch))
+        self.story.append(Spacer(1, 0.2*inch))
         
         # Subtitle
         subtitle = Paragraph(
@@ -110,7 +110,7 @@ class ProjectReportGenerator:
             self.styles['CenterText']
         )
         self.story.append(subtitle)
-        self.story.append(Spacer(1, 0.5*inch))
+        self.story.append(Spacer(1, 0.3*inch))
         
         # Project details
         details = [
@@ -123,14 +123,15 @@ class ProjectReportGenerator:
         
         for detail in details:
             self.story.append(Paragraph(detail, self.styles['CenterText']))
-            self.story.append(Spacer(1, 0.1*inch))
+            if detail:  # Only add small spacer for non-empty lines
+                self.story.append(Spacer(1, 0.05*inch))
         
-        self.story.append(Spacer(1, 1*inch))
+        self.story.append(Spacer(1, 0.5*inch))
         
         # Technology stack
         tech_title = Paragraph("<b>Technology Stack</b>", self.styles['CenterText'])
         self.story.append(tech_title)
-        self.story.append(Spacer(1, 0.2*inch))
+        self.story.append(Spacer(1, 0.15*inch))
         
         technologies = [
             ["Backend", "Python, FastAPI, TensorFlow/Keras, NetworkX"],
@@ -140,15 +141,15 @@ class ProjectReportGenerator:
             ["Visualization", "Matplotlib, Seaborn, Pandas"]
         ]
         
-        tech_table = Table(technologies, colWidths=[2*inch, 4*inch])
+        tech_table = Table(technologies, colWidths=[1.5*inch, 4*inch])
         tech_table.setStyle(TableStyle([
             ('BACKGROUND', (0, 0), (0, -1), colors.HexColor('#e8eaf6')),
             ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
             ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
             ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
-            ('TOPPADDING', (0, 0), (-1, -1), 8),
+            ('FONTSIZE', (0, 0), (-1, -1), 9),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+            ('TOPPADDING', (0, 0), (-1, -1), 6),
             ('GRID', (0, 0), (-1, -1), 0.5, colors.grey)
         ]))
         self.story.append(tech_table)
