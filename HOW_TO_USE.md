@@ -13,7 +13,7 @@ The station loading issue has been resolved. The application now:
 ## 📝 Step-by-Step Usage Guide
 
 ### Step 1: Open the Application
-Navigate to: **https://train-data-insights.preview.emergentagent.com**
+Navigate to: **https://stations-display.preview.emergentagent.com**
 
 ### Step 2: Select Source Station
 1. Click on the **"Source Station"** dropdown
