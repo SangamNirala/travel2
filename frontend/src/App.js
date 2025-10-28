@@ -25,7 +25,8 @@ function App() {
 
   const fetchStations = async () => {
     try {
-      console.log('Fetching stations...');
+      console.log('API_URL:', API_URL);
+      console.log('Fetching stations from:', `${API_URL}/api/stations`);
       const response = await axios.get(`${API_URL}/api/stations`, {
         timeout: 30000 // 30 second timeout
       });
@@ -35,6 +36,7 @@ function App() {
       toast.success(`${response.data.length} stations loaded successfully!`);
     } catch (error) {
       console.error('Error fetching stations:', error);
+      console.error('Error details:', error.response || error.message);
       toast.error('Failed to load stations. Please refresh the page.');
       setLoadingStations(false);
     }
